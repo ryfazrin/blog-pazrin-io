@@ -26,7 +26,7 @@ export default function Home({ posts }) {
               onClick={() => {
                 const data = { event: 'button-click', some: { data: true } }
                 console.log('dataLayer.push()')
-                dataLayer.push(data)
+                window.dataLayer.push(data)
               }}
             >
               Standard dataLayer.push
