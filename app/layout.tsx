@@ -95,6 +95,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      {/* Twitter untuk embed widget */}
+      <Script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
       {/* Google Tag Manager */}
       <Script id="gtm" strategy="afterInteractive">
         {`
@@ -114,6 +116,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             f.parentNode.insertBefore(j, f);
           })(window, document, 'script', 'dataLayer', 'GTM-WRNP3NZ');
+        `}
+      </Script>
+      {/* Facebook Pixel */}
+      <Script id="facebook-pixel" strategy="afterInteractive">
+        {`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '987747585216906');
+          fbq('track', 'PageView');
         `}
       </Script>
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">

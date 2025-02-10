@@ -9,6 +9,17 @@ import NewsletterForm from 'pliny/ui/NewsletterForm'
 const MAX_DISPLAY = 5
 
 export default function Home({ posts }) {
+  const sendEvent = () => {
+    console.log('fbq')
+    window.fbq('track', 'PageView')
+  }
+
+  const gtmPush = () => {
+    const data = { event: 'button-click', some: { data: true } }
+    console.log('dataLayer.push()')
+    window.dataLayer.push(data)
+  }
+
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -21,16 +32,36 @@ export default function Home({ posts }) {
           </p>
           {/* Google Tag Manager */}
           <div>
-            <button
-              type="button"
-              onClick={() => {
-                const data = { event: 'button-click', some: { data: true } }
-                console.log('dataLayer.push()')
-                window.dataLayer.push(data)
-              }}
-            >
+            <button type="button" onClick={gtmPush}>
               Standard dataLayer.push
             </button>
+          </div>
+          {/* Facebook Pixel */}
+          <div>
+            <button type="button" onClick={sendEvent}>
+              fbq('track', 'PageView')
+            </button>
+          </div>
+          {/* Embed Tweet */}
+          <div>
+            {/* <Image src="/heroImage.jpg" alt="teamwork on web services" width="1332px" height="354px"/> */}
+            <blockquote className="twitter-tweet">
+              <p lang="en" dir="ltr">
+                Just setting up my Twitter. #myfirstTweet
+              </p>
+              &mdash; Twitter Dev (@TwitterDev)
+              <a href="https://twitter.com/ryfazrin/status/1504760897176174595">February 8, 2025</a>
+            </blockquote>
+
+            {/* Embed Timeline */}
+            <a
+              className="twitter-timeline"
+              data-width="550"
+              data-height="400"
+              href="https://twitter.com/ryfazrin/status/1504760897176174595"
+            >
+              Tweets by TwitterDev
+            </a>
           </div>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
